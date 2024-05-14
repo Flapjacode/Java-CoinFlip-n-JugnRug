@@ -3,8 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.lang.ClassNotFoundException;
 
-public class JugnRug2 extends JFrame {
+public class JugnRug3 extends JFrame {
     private JButton flipButton;
     private JLabel resultLabel;
     private JRadioButton jugButton;
@@ -12,9 +13,9 @@ public class JugnRug2 extends JFrame {
     private JRadioButton[] betButtons;
     private Random random;
 
-    public JugnRug2() {
+    public JugnRug3() {
         super("Jug'o'Rug");
-        setLayout(new FlowLayout());
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         flipButton = new JButton("Place-Bet");
         resultLabel = new JLabel("");
@@ -32,6 +33,10 @@ public class JugnRug2 extends JFrame {
             add(betButtons[i]);
         }
 
+        // Set font size for Jug and Rug buttons
+        jugButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        rugButton.setFont(new Font("Arial", Font.PLAIN, 24));
+
         ButtonGroup choiceGroup = new ButtonGroup();
         choiceGroup.add(jugButton);
         choiceGroup.add(rugButton);
@@ -45,12 +50,15 @@ public class JugnRug2 extends JFrame {
 
                 resultLabel.setText("Result: " + result);
                 if (result.equals(choice)) {
-                    JOptionPane.showMessageDialog(null, "You win!");
+                    JOptionPane.showMessageDialog(null, choice + ": You win!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "You lose!");
+                    JOptionPane.showMessageDialog(null, choice + ": You lose!");
                 }
             }
         });
+
+        // Set font size for result label
+        resultLabel.setFont(new Font("Arial", Font.PLAIN, 36));
 
         add(jugButton);
         add(rugButton);
@@ -59,9 +67,9 @@ public class JugnRug2 extends JFrame {
     }
 
     public static void main(String[] args) {
-        JugnRug2 game = new JugnRug2();
+        JugnRug3 game = new JugnRug3();
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        game.setSize(300, 150);
+        game.setSize(500, 400);
         game.setVisible(true);
     }
 }
